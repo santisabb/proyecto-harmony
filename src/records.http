@@ -1,0 +1,30 @@
+###MOSTRAR DISSCOS
+GET http://localhost:8080/api/records
+###MOSTRAR UN DISCO
+GET http://localhost:8080/api/records/44b8a145-88a1-4c1f-a8e2-0c9f5aca9e74
+###CREAR UN DISCO
+POST http://localhost:8080/api/records
+Content-Type: application/json
+
+{
+    "recordName": "542",
+    "duration": 30.48,
+    "songs": [
+        "Intro",
+        "Arruinandome",
+        "Perdido en Mi",
+        "Despues de las 12",
+        "Gas",
+        "Interludio",
+        "Power",
+        "Vw",
+        "Blue",
+        "Libertinaje",
+        "La Calle Lo Sabe",
+        "Outro"
+    ],
+    "artistName": [
+        "C.R.O"
+    ],
+    "rateAverage": 5
+}

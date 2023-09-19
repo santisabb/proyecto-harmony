@@ -1,0 +1,16 @@
+GET http://localhost:8080/api/users
+###CREAR USUARIO
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+    "userName": "señorx",
+    "email": "señorx@gmail.com",
+    "webLink": "www.nosoyhjsimpson.com",
+    "totalRecords": 12,
+    "favoriteRecords":[
+        "Otro Dia en el Planeta Tierra",
+        "Especial",
+        "Viejas Locas"
+    ]
+}

@@ -1,0 +1,18 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    display: block;
+    height: 72px;
+    position: relative;
+    background-color: beige;
+    text-align: center;
+}
+
+.web-body{
+    display: block;
+    padding: 30px;
+    background-color: grey;
+}
