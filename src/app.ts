@@ -29,42 +29,6 @@ const records = [
     )
 ]
 
-function sanitizeUserInput(req: Request, res: Response, next: NextFunction){
-    req.body.sanitizeInput = {
-        userName: req.body.userName,
-        email: req.body.email,
-        webLink: req.body.webLink,
-        totalRecords: req.body.totalRecords,
-        favoriteRecords: req.body.favoriteRecords
-    }
-
-    Object.keys(req.body.sanitizedInput).forEach((key) => {
-        if (req.body.sanitizedInput[key] === undefined) {
-          delete req.body.sanitizedInput[key]
-        }
-      })
-
-    next()
-}
-
-function sanitizeRecordInput(req: Request, res: Response, next: NextFunction){
-    req.body.sanitizeInput = {
-        recordName: req.body.recordName,
-        duration: req.body.duration,
-        songs: req.body.songs,
-        artistName: req.body.artistName,
-        rateAverage: req.body.rateAverage
-    }
-
-    Object.keys(req.body.sanitizedInput).forEach((key) => {
-        if (req.body.sanitizedInput[key] === undefined) {
-          delete req.body.sanitizedInput[key]
-        }
-      })
-
-    next()
-}
-
 app.get('/api/users', (req, res) => {
     res.json({ users })
 })
@@ -76,36 +40,50 @@ app.get('/api/users/:userId', (req, res) => {
         res.status(404).send({ message: 'User not found bro :('})
     }
 
-    res.json({ user })
+    res.json({ data:user })
 })
 
-app.post('/api/users', sanitizeUserInput, (req, res) => {
-    const input = req.body.sanitizeInput
+app.post('/api/users', (req, res) => {
+    const {
+        userName,
+        email,
+        webLink,
+        totalRecords,
+        favoriteRecords
+    } = req.body
 
-    const user = new User(input.userName, input.email, input.webLink, input.totalRecords, input.favoriteRecords)
+    const user = new User(userName, email, webLink, totalRecords, favoriteRecords)
 
     users.push(user)
     res.status(201).send({ message: 'User added successfully', data: user })
 })
 
-app.patch('api/users/:userId', sanitizeUserInput, (req, res) => {
-    const userIndex = users.findIndex((user) => user.userId === req.params.userId)   
+app.put('/api/users/:userId', (req, res) => {
+    const userIndex = users.findIndex((user) => user.userId === req.params.userId)
 
-    if (userIndex === -1) {
+    if (userIndex === -1){
         res.status(404).send({ message: 'User not found bro :('})
     }
 
-    Object.assign(users[userIndex], req.body.sanitizedInput)
+    const input = {
+        userName: req.body.userName,
+        email: req.body.email,
+        webLink: req.body.webLink,
+        totalRecords: req.body.totalRecords,
+        favoriteRecords: req.body.favoriteRecords
+    }
 
-    res.status(200).send({ message: 'User successfully modified' })
+    users[userIndex] = { ...users[userIndex], ...input}
+
+    res.status(200).send({ message: 'User successfully modified'})
 })
 
-app.delete('api/users/:userId',  (req, res) => {
-    const userIndex = users.findIndex((user) => user.userId === req.params.userId)   
+app.delete('/api/users/:userId',  (req, res) => {
+    const userIndex = users.findIndex((user) => user.userId === req.params.userId)
 
-    if (userIndex === -1) {
+    if (userIndex === -1){
         res.status(404).send({ message: 'User not found bro :('})
-    }else{
+    } else {
         users.splice(userIndex, 1)
         res.status(200).send({ message: 'User successfully deleted' })
     }
@@ -125,26 +103,40 @@ app.get('/api/records/:recordId', (req, res) => {
     res.json(record)
 })
 
-app.post('/api/records', sanitizeRecordInput, (req, res) => {
-    const input = req.body.sanitizeInput
+app.post('/api/records', (req, res) => {
+    const {
+        recordName,
+        duration,
+        songs,
+        artistName,
+        rateAverage
+    } = req.body
 
-    const record = new Record(input.recordName, input.duration, input.songs, input.artistName, input.rateAverage)
+    const record = new Record(recordName, duration, songs, artistName, rateAverage)
 
     records.push(record)
 
     res.status(201).send({ message: 'Record successfully created', data: record })
 })
 
-app.patch('/api/records/:recordId', (req, res) => {
-    const recordIndex = records.findIndex((record) => record.recordId === req.params.recordId)   
+app.put('/api/records/:recordId', (req, res) => {
+    const recordIndex = records.findIndex((record) => record.recordId === req.params.recordId)
 
-    if (recordIndex === -1) {
+    if (recordIndex === -1){
         res.status(404).send({ message: 'Record not found bro :('})
     }
 
-    Object.assign(records[recordIndex], req.body.sanitizedInput)
+    const input = {
+        recordName: req.body.recordName,
+        duration: req.body.duration,
+        songs: req.body.songs,
+        artistName: req.body.artistName,
+        rateAverage: req.body.rateAverage
+    }
 
-    res.status(200).send({ message: 'Record successfully modified' })
+    records[recordIndex] = { ...records[recordIndex], ...input}
+
+    res.status(200).send({ message: 'User successfully modified'})
 })
 
 app.delete('/api/records/:recordId', (req, res) => {

@@ -1,16 +1,35 @@
 GET http://localhost:8080/api/users
+###OBTENER UN USUARIO
+GET http://localhost:8080/api/users/5ee0fe72-5787-481f-ac7c-9f49ab8eb18b
 ###CREAR USUARIO
 POST http://localhost:8080/api/users
 Content-Type: application/json
 
-{
+{        
     "userName": "señorx",
     "email": "señorx@gmail.com",
     "webLink": "www.nosoyhjsimpson.com",
     "totalRecords": 12,
-    "favoriteRecords":[
-        "Otro Dia en el Planeta Tierra",
-        "Especial",
-        "Viejas Locas"
+    "favoriteRecords": [
+      "PRESION",
+      "SEÑALES",
+      "SED"
     ]
 }
+###ACTUALIZAR INFORMACION
+PUT http://localhost:8080/api/users/5ee0fe72-5787-481f-ac7c-9f49ab8eb18b
+Content-Type: application/json
+
+{
+        "userName": "señorx",
+    "email": "señorx@gmail.com",
+    "webLink": "www.nosoyhjsimpson.com",
+    "totalRecords": 20,
+    "favoriteRecords": [
+      "PRESION",
+      "SEÑALES",
+      "SED"
+    ]
+}
+###BORRAR UN USUARIO
+DELETE http://localhost:8080/api/users/3855d89c-cb37-474b-bb95-08f108fe204a
