@@ -14,3 +14,14 @@ Content-Type: application/json
         "Viejas Locas"
     ]
 }
+###OBTENER UN USUARIO
+GET http://localhost:8080/api/users/1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed
+###MODIFICAR INFO DE UN USUARIO
+PATCH  http://localhost:8080/api/users/7917715b-ea41-43ae-82cb-07929e115ce4
+Content-Type: application/json
+
+{
+    "userName": "Homero Simpson",
+    "email": "elhomo@gmail.com",
+    "webLink": "www.soyhjsimpson.com"
+}
