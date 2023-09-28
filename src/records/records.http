@@ -1,0 +1,62 @@
+###MOSTRAR DISSCOS
+GET http://localhost:8080/api/records
+###MOSTRAR UN DISCO
+GET http://localhost:8080/api/records/c2181edf-041b-0a61-3651-79d671fa3db7
+###CREAR UN DISCO
+POST http://localhost:8080/api/records
+Content-Type: application/json
+
+{
+    "recordName": "Ambicion y Discplina",
+    "duration": 18.9,
+    "songs": [
+        "Intro",
+        "This not coke",
+        "Miedo",
+        "Players",
+        "Discplina",
+        "Ambicion"
+    ],
+    "artistName": [
+        "Zica"
+    ],
+    "rateAverage": 5
+}
+###MODIFICAR UN DISCO (con put)
+PUT http://localhost:8080/api/records/5f622921-413f-4fe1-85bc-3d2735641179
+Content-Type: application/json
+
+{
+    "recordName": "Señales",
+    "duration": 52.9,
+    "songs": [
+      "Daños",
+      "Puede",
+      "Limites",
+      "Creo",
+      "Frente al Río",
+      "Sin Paciencia",
+      "Día a Día",
+      "Sueño",
+      "Hoy",
+      "9 de Julio",
+      "Señales",
+      "Desencuentro"
+    ],
+    "artistName": [
+      "Callejeros"
+    ],
+    "rateAverage": 5
+}
+###MODIFICAR UN DISCO (con patch)
+PATCH http://localhost:8080/api/records/290a7258-f3a8-4e24-85ac-68c694329450
+Content-Type: application/json
+
+{
+    "artistName":[
+        "Callejeros"
+    ],
+    "rateAverage": 5
+}
+###BORRAR UN DISCO
+DELETE http://localhost:8080/api/records/11f6f5ba-8094-479f-ad60-d7645f5f83d1
