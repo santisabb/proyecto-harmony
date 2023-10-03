@@ -46,6 +46,8 @@ function sanitizeUserInput (req: Request, res: Response, next: NextFunction){
             delete req.body.sanitizeInput[key]
         }
     })
+
+    next()
 }
 
 function sanitizeRecordInput (req: Request, res: Response, next: NextFunction){
@@ -62,6 +64,8 @@ function sanitizeRecordInput (req: Request, res: Response, next: NextFunction){
             delete req.body.sanitizeInput[key]
         }
     })
+
+    next()
 }
 
 app.get('/api/users', (req, res) => {
@@ -98,7 +102,18 @@ app.patch('/api/users/:userId', sanitizeUserInput, (req, res) => {
     res.status(200).send({ message: 'User successfully modified' })
 })
 
-app.delete('api/users/:userId',  (req, res) => {
+app.put('/api/users/:userId', sanitizeUserInput, (req, res) => {
+    req.body.sanitizeInput.userId = req.params.userId
+    const user = userRepo.update(req.body.sanitizeInput)   
+
+    if (!user) {
+        res.status(404).send({ message: 'User not found bro :('})
+    }
+
+    res.status(200).send({ message: 'User successfully modified' })
+})
+
+app.delete('/api/users/:userId',  (req, res) => {
     const id =  req.params.userId
     
     const user = userRepo.delete({ id })
@@ -126,34 +141,36 @@ app.get('/api/records/:recordId', (req, res) => {
     res.json({ data: record })
 })
 
-app.post('/api/records',sanitizeUserInput, (req, res) => {
+app.post('/api/records',sanitizeRecordInput, (req, res) => {
     const input = req.body.sanitizeInput
 
     const recordInput = new Record(input.recordName, input.duration, input.songs, input.artistName, input.rateAverage)
 
     const record = recRepo.add(recordInput)
 
-    res.status(201).send({ message: 'Record successfully created', data: record })
+    return res.status(201).send({ message: 'Record successfully created', data: record })
 })
 
-app.put('/api/records/:recordId', (req, res) => {
-    const recordIndex = records.findIndex((record) => record.recordId === req.params.recordId)
+app.put('/api/records/:recordId',sanitizeRecordInput, (req, res) => {
+    req.body.sanitizeInput.recordId = req.params.recordId
+    const record = recRepo.update(req.body.sanitizeInput)
 
-    if (recordIndex === -1){
+    if (!record){
         res.status(404).send({ message: 'Record not found bro :('})
     }
 
-    const input = {
-        recordName: req.body.recordName,
-        duration: req.body.duration,
-        songs: req.body.songs,
-        artistName: req.body.artistName,
-        rateAverage: req.body.rateAverage
+    res.status(200).send({ message: 'Record successfully modified'})
+})
+
+app.patch('/api/records/:recordId',sanitizeRecordInput, (req, res) => {
+    req.body.sanitizeInput.recordId = req.params.recordId
+    const record = recRepo.update(req.body.sanitizeInput)
+
+    if (!record){
+        res.status(404).send({ message: 'Record not found bro :('})
     }
 
-    records[recordIndex] = { ...records[recordIndex], ...input}
-
-    res.status(200).send({ message: 'User successfully modified'})
+    res.status(200).send({ message: 'Record successfully modified'})
 })
 
 app.delete('/api/records/:recordId', (req, res) => {

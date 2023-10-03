@@ -7,23 +7,29 @@ POST http://localhost:8080/api/records
 Content-Type: application/json
 
 {
-    "recordName": "Ambicion y Discplina",
-    "duration": 18.9,
+    "recordName": "Presion",
+    "duration": 52.9,
     "songs": [
-        "Intro",
-        "This not coke",
-        "Miedo",
-        "Players",
-        "Discplina",
-        "Ambicion"
+      "Daños",
+      "Puede",
+      "Limites",
+      "Creo",
+      "Frente al Río",
+      "Sin Paciencia",
+      "Día a Día",
+      "Sueño",
+      "Hoy",
+      "9 de Julio",
+      "Señales",
+      "Desencuentro"
     ],
     "artistName": [
-        "Zica"
+      "Callejero Fino"
     ],
-    "rateAverage": 5
+    "rateAverage": 0.5
 }
 ###MODIFICAR UN DISCO (con put)
-PUT http://localhost:8080/api/records/5f622921-413f-4fe1-85bc-3d2735641179
+PUT http://localhost:8080/api/records/71977e61-e777-4a86-9b29-43e7d3ff4709
 Content-Type: application/json
 
 {
@@ -49,14 +55,15 @@ Content-Type: application/json
     "rateAverage": 5
 }
 ###MODIFICAR UN DISCO (con patch)
-PATCH http://localhost:8080/api/records/290a7258-f3a8-4e24-85ac-68c694329450
+PATCH http://localhost:8080/api/records/71977e61-e777-4a86-9b29-43e7d3ff4709
 Content-Type: application/json
 
 {
-    "artistName":[
+    "recordName": "Señales",
+    "artistName": [
         "Callejeros"
     ],
     "rateAverage": 5
 }
 ###BORRAR UN DISCO
-DELETE http://localhost:8080/api/records/11f6f5ba-8094-479f-ad60-d7645f5f83d1
+DELETE http://localhost:8080/api/records/6a77c14f-4710-45e3-9282-5418487b1a67

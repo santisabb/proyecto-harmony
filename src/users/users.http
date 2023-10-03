@@ -17,13 +17,13 @@ Content-Type: application/json
     ]
 }
 ###ACTUALIZAR INFORMACION
-PUT http://localhost:8080/api/users/5ee0fe72-5787-481f-ac7c-9f49ab8eb18b
+PUT http://localhost:8080/api/users/3fc1a1e8-2877-4073-b2f3-0b1834754d3b
 Content-Type: application/json
 
 {
-        "userName": "señorx",
-    "email": "señorx@gmail.com",
-    "webLink": "www.nosoyhjsimpson.com",
+    "userName": "Santi",
+    "email": "santisabb@gmail.com",
+    "webLink": "www.el+sabbio.com",
     "totalRecords": 20,
     "favoriteRecords": [
       "PRESION",
@@ -32,4 +32,4 @@ Content-Type: application/json
     ]
 }
 ###BORRAR UN USUARIO
-DELETE http://localhost:8080/api/users/3855d89c-cb37-474b-bb95-08f108fe204a
+DELETE http://localhost:8080/api/users/8f591f95-56b9-4e09-9cb9-04e40d831ecc
