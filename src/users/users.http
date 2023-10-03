@@ -1,6 +1,6 @@
 GET http://localhost:8080/api/users
 ###OBTENER UN USUARIO
-GET http://localhost:8080/api/users/5ee0fe72-5787-481f-ac7c-9f49ab8eb18b
+GET http://localhost:8080/api/users/1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed
 ###CREAR USUARIO
 POST http://localhost:8080/api/users
 Content-Type: application/json
@@ -16,8 +16,8 @@ Content-Type: application/json
       "SED"
     ]
 }
-###ACTUALIZAR INFORMACION
-PUT http://localhost:8080/api/users/3fc1a1e8-2877-4073-b2f3-0b1834754d3b
+###ACTUALIZAR INFORMACION (con put)
+PUT http://localhost:8080/api/users/52b07416-12bb-4a10-92ff-b689de9dfb23
 Content-Type: application/json
 
 {
@@ -31,5 +31,14 @@ Content-Type: application/json
       "SED"
     ]
 }
+###ACTUALIZAR INFORMACION (con put)
+PATCH http://localhost:8080/api/users/ea3d047c-e3f0-46a5-a23a-c87e4be55bd4
+Content-Type: application/json
+
+{
+  "userName": "Santi Sabbio",
+  "email": "santisabbio@gmail.com",
+  "webLink": "sabb10el+kpo.com"
+}
 ###BORRAR UN USUARIO
-DELETE http://localhost:8080/api/users/8f591f95-56b9-4e09-9cb9-04e40d831ecc
+DELETE http://localhost:8080/api/users/797db8b4-fce5-4969-b282-6e0c5ccf1479
