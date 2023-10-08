@@ -18,11 +18,8 @@ export class RecodRepository {
         return i;
     }
     async update(id, i) {
-        const recordIndex = await recordsArray.findIndex((record) => record.recordId === i.recordId);
-        if (recordIndex !== -1) {
-            recordsArray[recordIndex] = { ...recordsArray[recordIndex], ...i };
-        }
-        return recordsArray[recordIndex];
+        const _id = new ObjectId(id);
+        return (await records.findOneAndUpdate({ _id }, { $set: i }, { returnDocument: 'after' })) || undefined;
     }
     async delete(i) {
         const _id = new ObjectId(i.id);

@@ -49,8 +49,7 @@ async function add(req: Request, res: Response){
 }
 
 async function update(req: Request, res: Response){
-    req.body.sanitizeInput.recordId = req.params.recordId
-    const record = await recRepo.update(req.params.id, req.body.sanitizeInput)
+    const record = await recRepo.update(req.params.recordId, req.body.sanitizeInput)
 
     if (!record){
         res.status(404).send({ message: 'Record not found bro :('})

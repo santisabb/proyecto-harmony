@@ -34,7 +34,7 @@ async function add(req, res) {
     return res.status(201).send({ message: 'User added successfully', data: user });
 }
 async function update(req, res) {
-    const user = await userRepo.update(req.params.id, req.body.sanitizeInput);
+    const user = await userRepo.update(req.params.userId, req.body.sanitizeInput);
     if (!user) {
         res.status(404).send({ message: 'User not found bro :(' });
     }

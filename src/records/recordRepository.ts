@@ -32,13 +32,8 @@ export class RecodRepository implements Repository<Record> {
     }
 
     public async update(id: string,i: Record): Promise<Record | undefined> {
-        const recordIndex = await recordsArray.findIndex((record) => record.recordId === i.recordId)
-
-        if (recordIndex !== -1){
-            recordsArray[recordIndex] = { ...recordsArray[recordIndex], ...i }
-        }
-
-        return recordsArray[recordIndex]
+        const _id = new ObjectId(id)
+        return (await records.findOneAndUpdate({ _id }, { $set: i }, { returnDocument: 'after' })) || undefined
     }
 
     public async delete(i: { id: string; }): Promise<Record | undefined> {
