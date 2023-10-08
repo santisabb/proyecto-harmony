@@ -1,23 +1,23 @@
 GET http://localhost:8080/api/users
 ###OBTENER UN USUARIO
-GET http://localhost:8080/api/users/1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed
+GET http://localhost:8080/api/users/1
 ###CREAR USUARIO
 POST http://localhost:8080/api/users
 Content-Type: application/json
 
 {        
     "userName": "señorx",
-    "email": "señorx@gmail.com",
-    "webLink": "www.nosoyhjsimpson.com",
-    "totalRecords": 12,
+    "email": "mrx@gmail.com",
+    "webLink": "www.nosoyhjsimson.com",
+    "totalRecords": 15,
     "favoriteRecords": [
-      "PRESION",
-      "SEÑALES",
-      "SED"
+      "POST MORTEM",
+      "SIN PRONTUARIO",
+      "Señales"
     ]
 }
 ###ACTUALIZAR INFORMACION (con put)
-PUT http://localhost:8080/api/users/52b07416-12bb-4a10-92ff-b689de9dfb23
+PUT http://localhost:8080/api/users/65221ed70e9831a1c01ad148
 Content-Type: application/json
 
 {
@@ -32,7 +32,7 @@ Content-Type: application/json
     ]
 }
 ###ACTUALIZAR INFORMACION (con put)
-PATCH http://localhost:8080/api/users/ea3d047c-e3f0-46a5-a23a-c87e4be55bd4
+PATCH http://localhost:8080/api/users/65222d3afa604799533192b4
 Content-Type: application/json
 
 {
@@ -41,4 +41,4 @@ Content-Type: application/json
   "webLink": "sabb10el+kpo.com"
 }
 ###BORRAR UN USUARIO
-DELETE http://localhost:8080/api/users/797db8b4-fce5-4969-b282-6e0c5ccf1479
+DELETE http://localhost:8080/api/users/65221ed70e9831a1c01ad148

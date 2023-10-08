@@ -22,13 +22,13 @@ function sanitizeUserInput (req: Request, res: Response, next: NextFunction){
     next()
 }
 
-function findAll(req: Request, res: Response){
-    res.json({ data:  userRepo.findAll()})
+async function findAll(req: Request, res: Response){
+    res.json({ data:  await userRepo.findAll()})
 }
 
-function findOne(req: Request, res: Response){
+async function findOne(req: Request, res: Response){
     const id =  req.params.userId
-    const user = userRepo.findOne({ id })
+    const user = await userRepo.findOne({ id })
 
     if (!user) {
         res.status(404).send({ message: 'User not found bro :('})
@@ -37,17 +37,16 @@ function findOne(req: Request, res: Response){
     res.json({ data:user })
 }
 
-function add(req: Request, res: Response){
+async function add(req: Request, res: Response){
     const input = req.body.sanitizeInput
     const userInput = new User(input.userName, input.email, input.webLink, input.totalRecords, input.favoriteRecords)
 
-    const user = userRepo.add(userInput)
+    const user = await userRepo.add(userInput)
     return res.status(201).send({ message: 'User added successfully', data: user })
 }
 
-function update(req: Request, res: Response){
-    req.body.sanitizeInput.userId = req.params.userId
-    const user = userRepo.update(req.body.sanitizeInput)   
+async function update(req: Request, res: Response){
+    const user = await userRepo.update(req.params.id, req.body.sanitizeInput)   
 
     if (!user) {
         res.status(404).send({ message: 'User not found bro :('})
@@ -56,10 +55,10 @@ function update(req: Request, res: Response){
     res.status(200).send({ message: 'User successfully modified' })
 }
 
-function remove(req: Request, res: Response){
+async function remove(req: Request, res: Response){
     const id =  req.params.userId
     
-    const user = userRepo.delete({ id })
+    const user = await userRepo.delete({ id })
 
     if (!user) {
         res.status(404).send({ message: 'User not found bro :('})

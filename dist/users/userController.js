@@ -16,34 +16,33 @@ function sanitizeUserInput(req, res, next) {
     });
     next();
 }
-function findAll(req, res) {
-    res.json({ data: userRepo.findAll() });
+async function findAll(req, res) {
+    res.json({ data: await userRepo.findAll() });
 }
-function findOne(req, res) {
+async function findOne(req, res) {
     const id = req.params.userId;
-    const user = userRepo.findOne({ id });
+    const user = await userRepo.findOne({ id });
     if (!user) {
         res.status(404).send({ message: 'User not found bro :(' });
     }
     res.json({ data: user });
 }
-function add(req, res) {
+async function add(req, res) {
     const input = req.body.sanitizeInput;
     const userInput = new User(input.userName, input.email, input.webLink, input.totalRecords, input.favoriteRecords);
-    const user = userRepo.add(userInput);
+    const user = await userRepo.add(userInput);
     return res.status(201).send({ message: 'User added successfully', data: user });
 }
-function update(req, res) {
-    req.body.sanitizeInput.userId = req.params.userId;
-    const user = userRepo.update(req.body.sanitizeInput);
+async function update(req, res) {
+    const user = await userRepo.update(req.params.id, req.body.sanitizeInput);
     if (!user) {
         res.status(404).send({ message: 'User not found bro :(' });
     }
     res.status(200).send({ message: 'User successfully modified' });
 }
-function remove(req, res) {
+async function remove(req, res) {
     const id = req.params.userId;
-    const user = userRepo.delete({ id });
+    const user = await userRepo.delete({ id });
     if (!user) {
         res.status(404).send({ message: 'User not found bro :(' });
     }

@@ -1,7 +1,9 @@
 import { Repository } from "../shared/repository.js"
 import { User } from "./usersEntity.js"
+import { db } from "../shared/db/dbConnection.js"
+import { ObjectId } from "mongodb"
 
-const users = [
+const usersArray = [
     new User(
         'santisabb',
         'santisabbioni@gmail.com',
@@ -12,36 +14,30 @@ const users = [
     )
 ]
 
+const users = db.collection<User>('users')
+
 export class UserRepository implements Repository<User>{
-    public findAll(): User[] | undefined {
-        return users
+    public async findAll(): Promise<User[] | undefined> {
+        return await users.find().toArray()
     }
 
-    public findOne(i: { id: string; }): User | undefined {
-        return users.find((user) => user.userId === i.id)
+    public async findOne(i: { id: string; }): Promise<User | undefined> {
+        const _id = new ObjectId(i.id)
+        return (await users.findOne({ _id })) || undefined
     }
 
-    public add(i: User): User | undefined {
-        users.push(i)
+    public async add(i: User): Promise<User | undefined> {
+        await users.insertOne(i)
         return i
     }
 
-    public update(i: User): User | undefined {
-        const userIndex = users.findIndex((user) => user.userId === i.userId) 
-
-        if (userIndex!== -1) {
-            users[userIndex] = { ...users[userIndex], ...i }
-        }
-
-        return users[userIndex]
+    public async update(id: string, i: User): Promise<User | undefined> {
+        const _id = new ObjectId(id)
+        return (await users.findOneAndUpdate({ _id }, { $set: i }, { returnDocument: 'after' })) || undefined
     }
 
-    public delete(i: { id: string; }): User | undefined {
-        const userIndex = users.findIndex((user) => user.userId === i.id)
-
-        if (userIndex!== -1) {
-            const userDelete = users.splice(userIndex, 1)
-            return userDelete[0]
-        }
+    public async delete(i: { id: string; }): Promise<User | undefined> {
+        const _id = new ObjectId(i.id)
+        return (await users.findOneAndDelete({ _id })) || undefined
     }
 }

@@ -1,32 +1,38 @@
 ###MOSTRAR DISSCOS
 GET http://localhost:8080/api/records
 ###MOSTRAR UN DISCO
-GET http://localhost:8080/api/records/c2181edf-041b-0a61-3651-79d671fa3db7
+GET http://localhost:8080/api/records/65222ef5c9ff62e364b8dc9d
 ###CREAR UN DISCO
 POST http://localhost:8080/api/records
 Content-Type: application/json
 
 {
-    "recordName": "Presion",
-    "duration": 52.9,
+    "recordName": "POST MORTEM",
+    "duration": 43.43,
     "songs": [
-      "Daños",
-      "Puede",
-      "Limites",
-      "Creo",
-      "Frente al Río",
-      "Sin Paciencia",
-      "Día a Día",
-      "Sueño",
-      "Hoy",
-      "9 de Julio",
-      "Señales",
-      "Desencuentro"
+      "LA PRIMERA",
+      "HEGEMONICA",
+      "PELOTUDA",
+      "DEMIAN",
+      "POST MORTEM",
+      "BICICLETA",
+      "DUO",
+      "PISO 13",
+      "SIDE",
+      "COAHC",
+      "BOHEMIAN GROOVE SKIT",
+      "OPA",
+      "RILLI RILLI",
+      "220",
+      "TODA LA GENTE",
+      "REALITY",
+      "ROCKETPOWERS",
+      "AMIGOS NUEVOS"
     ],
     "artistName": [
-      "Callejero Fino"
+      "Dillom"
     ],
-    "rateAverage": 0.5
+    "rateAverage": 5
 }
 ###MODIFICAR UN DISCO (con put)
 PUT http://localhost:8080/api/records/6c14690c-1f8c-4f20-989a-0a624e704c51
@@ -55,7 +61,7 @@ Content-Type: application/json
     "rateAverage": 5
 }
 ###MODIFICAR UN DISCO (con patch)
-PATCH http://localhost:8080/api/records/98af2430-42dd-47a1-9477-4b61f99634e0
+PATCH http://localhost:8080/api/records/65222ef5c9ff62e364b8dc9d
 Content-Type: application/json
 
 {
@@ -66,4 +72,4 @@ Content-Type: application/json
     "rateAverage": 5
 }
 ###BORRAR UN DISCO
-DELETE http://localhost:8080/api/records/7c0fb9e0-99b9-45b5-ae24-707234164afa
+DELETE http://localhost:8080/api/records/ac837de4-da3b-4b4e-b374-6db99bcbc6a5

@@ -22,14 +22,14 @@ function sanitizeRecordInput (req: Request, res: Response, next: NextFunction){
     next()
 }
 
-function findAll(req: Request, res: Response){
-    res.json({ data: recRepo.findAll() })
+async function findAll(req: Request, res: Response){
+    res.json({ data: await recRepo.findAll() })
 }
 
-function findOne(req: Request, res: Response){
+async function findOne(req: Request, res: Response){
     const id = req.params.recordId
 
-    const record = recRepo.findOne({ id})
+    const record = await recRepo.findOne({ id})
 
     if(!record){
         res.status(404).send({ message: 'Record not found :('})
@@ -38,19 +38,19 @@ function findOne(req: Request, res: Response){
     res.json({ data: record })
 }
 
-function add(req: Request, res: Response){
+async function add(req: Request, res: Response){
     const input = req.body.sanitizeInput
 
     const recordInput = new Record(input.recordName, input.duration, input.songs, input.artistName, input.rateAverage)
 
-    const record = recRepo.add(recordInput)
+    const record = await recRepo.add(recordInput)
 
     return res.status(201).send({ message: 'Record successfully created', data: record })
 }
 
-function update(req: Request, res: Response){
+async function update(req: Request, res: Response){
     req.body.sanitizeInput.recordId = req.params.recordId
-    const record = recRepo.update(req.body.sanitizeInput)
+    const record = await recRepo.update(req.params.id, req.body.sanitizeInput)
 
     if (!record){
         res.status(404).send({ message: 'Record not found bro :('})
@@ -59,9 +59,9 @@ function update(req: Request, res: Response){
     return res.status(200).send({ message: 'Record successfully modified'})
 }
 
-function remove(req: Request, res: Response){
+async function remove(req: Request, res: Response){
     const id = req.params.recordId
-    const record = recRepo.delete({id})
+    const record = await recRepo.delete({id})
 
     if (!record) {
         res.status(404).send({ message: 'Record not found' })

@@ -1,4 +1,5 @@
 import crypto from 'crypto'
+import { ObjectId } from 'mongodb';
 
 export class Record{
     constructor(
@@ -7,6 +8,7 @@ export class Record{
         public songs: string[],
         public artistName: string[],
         public rateAverage: number,
-        public recordId= crypto.randomUUID()
+        public recordId= crypto.randomUUID(),
+        public record_id = ObjectId
     ) {}
 }

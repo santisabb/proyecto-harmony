@@ -1,7 +1,9 @@
 import { Repository } from "../shared/repository.js"
 import { Record } from "./recordsEntity.js"
+import { db } from "../shared/db/dbConnection.js"
+import { ObjectId } from "mongodb"
 
-const records = [
+const recordsArray = [
     new Record(
         'Temor',
         26.45,
@@ -12,36 +14,35 @@ const records = [
     ),
 ]
 
+const records = db.collection<Record>('records')
+
 export class RecodRepository implements Repository<Record> {
-    public findAll(): Record[] | undefined {
-        return records
+    public async findAll(): Promise<Record[] | undefined> {
+        return await records.find().toArray()
     }
 
-    public findOne(i: { id: string; }): Record | undefined {
-        return records.find((record) => record.recordId === i.id)
+    public async findOne(i: { id: string; }): Promise<Record | undefined> {
+        const _id = new ObjectId(i.id)
+        return (await records.findOne({ _id })) || undefined
     }
 
-    public add(i: Record): Record | undefined {
-        records.push(i)
+    public async add(i: Record): Promise<Record | undefined> {
+        await records.insertOne(i)
         return i
     }
 
-    public update(i: Record): Record | undefined {
-        const recordIndex = records.findIndex((record) => record.recordId === i.recordId)
+    public async update(id: string,i: Record): Promise<Record | undefined> {
+        const recordIndex = await recordsArray.findIndex((record) => record.recordId === i.recordId)
 
         if (recordIndex !== -1){
-            records[recordIndex] = { ...records[recordIndex], ...i }
+            recordsArray[recordIndex] = { ...recordsArray[recordIndex], ...i }
         }
 
-        return records[recordIndex]
+        return recordsArray[recordIndex]
     }
 
-    public delete(i: { id: string; }): Record | undefined {
-        const recordIndex = records.findIndex((record) => record.recordId === i.id)
-
-        if (recordIndex!== -1){
-            const deletedRecords = records.splice(recordIndex, 1)
-            return deletedRecords[0]
-        }
+    public async delete(i: { id: string; }): Promise<Record | undefined> {
+        const _id = new ObjectId(i.id)
+        return (await records.findOneAndDelete({ _id })) || undefined
     }
 }
