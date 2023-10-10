@@ -7,32 +7,32 @@ POST http://localhost:8080/api/records
 Content-Type: application/json
 
 {
-    "recordName": "POST MORTEM",
-    "duration": 43.43,
+    "recordName": "Muriendo Lento",
+    "duration": 39.23,
     "songs": [
-      "LA PRIMERA",
-      "HEGEMONICA",
-      "PELOTUDA",
-      "DEMIAN",
-      "POST MORTEM",
-      "BICICLETA",
-      "DUO",
-      "PISO 13",
-      "SIDE",
-      "COAHC",
-      "BOHEMIAN GROOVE SKIT",
-      "OPA",
-      "RILLI RILLI",
-      "220",
-      "TODA LA GENTE",
-      "REALITY",
-      "ROCKETPOWERS",
-      "AMIGOS NUEVOS"
+      "Todos Salten",
+      "Municiones",
+      "Clicqout",
+      "Pasamanos",
+      "Muriendo Lento",
+      "Champaña",
+      "Salvaje",
+      "Barrio Fino",
+      "Otro Empaque",
+      "Los Peores",
+      "Estrellas del Crimen",
+      "Contando Papeles",
+      "Pinar",
+      "Leona",
+      "Lujuria",
+      "Cassius Clay",
+      "Cuando Baja el Sol"
     ],
     "artistName": [
-      "Dillom"
+      "C.R.O",
+      "Franky Style"
     ],
-    "rateAverage": 5
+    "rateAverage": 4
 }
 ###MODIFICAR UN DISCO (con put)
 PUT http://localhost:8080/api/records/6c14690c-1f8c-4f20-989a-0a624e704c51

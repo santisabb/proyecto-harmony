@@ -1,19 +1,19 @@
 GET http://localhost:8080/api/users
 ###OBTENER UN USUARIO
-GET http://localhost:8080/api/users/65222d3afa604799533192b4
+GET http://localhost:8080/api/users/65222d3afa604799533192b0
 ###CREAR USUARIO
 POST http://localhost:8080/api/users
 Content-Type: application/json
 
 {        
-    "userName": "señorx",
-    "email": "mrx@gmail.com",
-    "webLink": "www.nosoyhjsimson.com",
-    "totalRecords": 15,
+    "userName": "crolover",
+    "email": "croteamo@gmail.com",
+    "webLink": "www.xquecroesdios.com",
+    "totalRecords": 10,
     "favoriteRecords": [
-      "POST MORTEM",
-      "SIN PRONTUARIO",
-      "Señales"
+      "542",
+      "Temor",
+      "Leyendas de la Noche"
     ]
 }
 ###ACTUALIZAR INFORMACION (con put)
