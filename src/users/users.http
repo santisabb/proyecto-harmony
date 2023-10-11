@@ -1,6 +1,6 @@
 GET http://localhost:8080/api/users
 ###OBTENER UN USUARIO
-GET http://localhost:8080/api/users/65222d3afa604799533192b0
+GET http://localhost:8080/api/users/6525ff4b6c39f2985680d012
 ###CREAR USUARIO
 POST http://localhost:8080/api/users
 Content-Type: application/json
@@ -17,7 +17,7 @@ Content-Type: application/json
     ]
 }
 ###ACTUALIZAR INFORMACION (con put)
-PUT http://localhost:8080/api/users/65222d3afa604799533192b4
+PUT http://localhost:8080/api/users/6525ff4b6c39f2985680d012
 Content-Type: application/json
 
 {

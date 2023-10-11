@@ -9,6 +9,6 @@ app.use((_, res) => {
     res.status(404).send({ message: 'Resource not found' });
 });
 app.listen(8080, () => {
-    console.log('listening on port 8080');
+    console.log('listening on port 27017');
 });
 //# sourceMappingURL=app.js.map
