@@ -1,7 +1,7 @@
 ###MOSTRAR DISSCOS
 GET http://localhost:8080/api/records
 ###MOSTRAR UN DISCO
-GET http://localhost:8080/api/records/65222ef5c9ff62e364b8dc9d
+GET http://localhost:8080/api/records/653195f80f56bb4795049b21
 ###CREAR UN DISCO
 POST http://localhost:8080/api/records
 Content-Type: application/json
@@ -35,7 +35,7 @@ Content-Type: application/json
     "rateAverage": 4
 }
 ###MODIFICAR UN DISCO (con put)
-PUT http://localhost:8080/api/records/6c14690c-1f8c-4f20-989a-0a624e704c51
+PUT http://localhost:8080/api/records/653195f80f56bb4795049b21
 Content-Type: application/json
 
 {
@@ -72,4 +72,4 @@ Content-Type: application/json
     "rateAverage": 5
 }
 ###BORRAR UN DISCO
-DELETE http://localhost:8080/api/records/ac837de4-da3b-4b4e-b374-6db99bcbc6a5
+DELETE http://localhost:8080/api/records/653195f80f56bb4795049b21

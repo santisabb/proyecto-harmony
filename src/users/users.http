@@ -1,19 +1,19 @@
 GET http://localhost:8080/api/users
 ###OBTENER UN USUARIO
-GET http://localhost:8080/api/users/6525ff4b6c39f2985680d012
+GET http://localhost:8080/api/users/6531950457a456dc4cf1e8c4
 ###CREAR USUARIO
 POST http://localhost:8080/api/users
 Content-Type: application/json
 
 {        
-    "userName": "crolover",
-    "email": "croteamo@gmail.com",
-    "webLink": "www.xquecroesdios.com",
-    "totalRecords": 10,
+    "userName": "Santi",
+    "email": "santisabb@gmail.com",
+    "webLink": "www.el+sabbio.com",
+    "totalRecords": 20,
     "favoriteRecords": [
-      "542",
-      "Temor",
-      "Leyendas de la Noche"
+      "nadie sabe que pasara mañana",
+      "X100PRE",
+      "542"
     ]
 }
 ###ACTUALIZAR INFORMACION (con put)
@@ -32,7 +32,7 @@ Content-Type: application/json
     ]
 }
 ###ACTUALIZAR INFORMACION (con put)
-PATCH http://localhost:8080/api/users/65222d3afa604799533192b4
+PATCH http://localhost:8080/api/users/653195cf0f56bb4795049b20
 Content-Type: application/json
 
 {
@@ -41,4 +41,4 @@ Content-Type: application/json
   "webLink": "sabb10el+kpo.com"
 }
 ###BORRAR UN USUARIO
-DELETE http://localhost:8080/api/users/65221ed70e9831a1c01ad148
+DELETE http://localhost:8080/api/users/653195cf0f56bb4795049b20
